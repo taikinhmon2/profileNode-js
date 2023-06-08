@@ -1,0 +1,21 @@
+<div class="container my-4">
+    <form method="POST" action="/course/{{viewUpdate._id}}?_method=PUT">
+        <div class="mb-3">
+            <label for="nameCourse" class="form-label">Tên khóa học</label>
+            <input type="text" class="form-control" id="nameCourse" value= "{{viewUpdate.name}}" name="name">
+        </div>
+        <div class="mb-3">
+            <label for="level" class="form-label">Trình độ</label>
+            <input type="text" class="form-control" id="level" value= "{{viewUpdate.level}}" name="level">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Mô tả khóa học</label>
+            <textarea class="form-control" id="description" name="description"> {{viewUpdate.description}} {{viewUpdate.name}}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="videoid" class="form-label">Id Video</label>
+            <input type="text" class="form-control" id="videoid" value="{{viewUpdate.idVideo}}" name="idVideo">
+        </div>
+        <button type="submit" class="btn btn-primary">Lưu khóa học</button>
+    </form>
+</div>

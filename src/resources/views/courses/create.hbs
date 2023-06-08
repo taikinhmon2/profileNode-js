@@ -1,0 +1,54 @@
+<div class="container my-4">
+    <form id="createCourse" method="POST" action="/course/store">
+        <div class="mb-3">
+            <label for="nameCourse" class="form-label">Tên khóa học</label>
+            <input type="text" class="form-control" id="nameCourse" name="name">
+            <span class="fs-6 text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Mô tả khóa học</label>
+            <input type="text" class="form-control" id="description" name="description">
+            <span class="fs-6 text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label for="level" class="form-label">Trình độ</label>
+            <input type="text" class="form-control" id="level" name="level">
+            <span class="fs-6 text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label for="videoid" class="form-label">Id Video</label>
+            <input type="text" class="form-control" id="videoid" name="idVideo">
+            <span class="fs-6 text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Thêm khóa học.</button>
+        <span class="checkValidate text-danger"></span>
+    </form>
+</div>
+
+{{!-- test --}}
+
+<script>
+    let isValid = true
+    const formCreate = document.querySelector("#createCourse")
+    const checkValidate = document.querySelector('.checkValidate')
+    if (formCreate) {
+            const inputElement = formCreate.querySelectorAll("input[name]")
+            inputElement.forEach((inputE) => {
+                inputE.onblur = function () {
+                    if (!this.value) {
+                        this.parentElement.querySelector('span').innerText = 'Vui lòng nhập trường này'
+                        isValid = false
+                    }
+                }
+                inputE.oninput = function () {
+                    if (this.value) {
+                        this.parentElement.querySelector('span').innerText = ''
+                        isValid = true
+                    }
+                }
+            })
+
+       
+
+    }
+</script>

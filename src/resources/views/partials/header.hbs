@@ -1,0 +1,84 @@
+{{!-- navbar--}}
+<nav class="navbar navbar-expand-md bg-dark navbar-dark py-3 sticky-top">
+  <div class="container">
+    <div class="col col-md-5">
+      <a href="/" class="navbar-brand">Fronend Bootcamp</a>
+    </div>
+    <div class="col col-md-7 text-center d-md-block d-none">
+      <div class="float-end">
+        <div class="dropdown">
+          <button class="btn btn-dark dropdown-toggle text-light" type="button"
+            data-bs-toggle="dropdown" >
+            <img class="me-3" src="https://yt3.ggpht.com/yti/AHyvSCAqKoD8h4K-3OYNpnuuAhtM5K-pN7QTcJCoePzt=s88-c-k-c0x00ffffff-no-rj-mo" alt="" style="height: 30px; width: 30px; border-radius: 50%;">
+            Tài smile
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="/course/create-course" class="dropdown-item">Create-Course</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/my/courses">Khóa học của tôi</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    {{!-- ofvancass --}}
+    <div class="col d-md-none d-block ">
+      <div class="offcanvas offcanvas-end bg-dark text-light" id="demo">
+        <div class="offcanvas-header">
+          <h1 class="offcanvas-title">Menu</h1>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column ">
+          <a href="/course/create-course" class=" text-decoration-none fs-5 text-light mb-4">Create-Course</a>
+        </div>
+      </div>
+
+      <button class="btn btn-primary d-md-none d-block float-end" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#demo">
+        <span><i class="bi bi-list"></i></span>
+      </button>
+    </div>
+
+    {{!-- --}}
+  </div>
+</nav>
+{{!-- showcase --}}
+<section class="bg-dark text-light p-5 p-lg-0 text-center text-sm-start">
+  <div class="container">
+    <div class="d-sm-flex align-items-center justify-content-between">
+      <div>
+        <h1>Become a <span class="text-warning">Web Developer</span></h1>
+        <p class="lead">
+          The course was taught by Colt Steele. He is a fantastic human being.
+          He's so good at teaching and explaining things and communicating difficult concepts, and that’s when I decided
+          Springboard would be the best bootcamp for me.
+        </p>
+        <button class="btn btn-primary btn-leg mb-3" data-bs-toggle="modal" data-bs-target="#enrollment">Start The
+          Enrollment</button>
+      </div>
+      <img class="img-fluid w-50 d-none d-sm-block rounded" style="object-fit: scale-down;"
+        src="https://typingkeyboards.com/blog/wp-content/uploads/2020/04/frontendmasters-bootcamp.jpg" alt="">
+
+    </div>
+  </div>
+</section>
+
+
+{{!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navmenu">
+  <ul class="navbar-nav ms-auto">
+    <li class="nav-item">
+      <a href="#learn" class="nav-link">What You'll Learn</a>
+    </li>
+    <li class="nav-item">
+      <a href="#question" class="nav-link">Questions</a>
+    </li>
+    <li class="nav-item">
+      <a href="#instructors" class="nav-link">Instructors</a>
+    </li>
+  </ul>
+</div> --}}

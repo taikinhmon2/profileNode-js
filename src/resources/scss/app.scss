@@ -1,0 +1,17 @@
+.dropPosition {
+    position: relative;
+}
+ul.dropdown-menu.dropMenu.show {
+    position: absolute;
+    top: 3rem;
+    left: -3rem;
+}
+a.position-absolute.h1.upCircle {
+    transform: translateY(-50%);
+    top: 50%;
+    right: 10px;
+}
+// .styleImg {
+//     height: inherit;
+//     object-fit: cover;
+// }

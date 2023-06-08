@@ -1,0 +1,139 @@
+<form id = 'submitAction' method="POST" action = '/course/handleSubmitCheckItems'class="container my-4">
+    <div class="d-flex  align-items-center my-4">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="checkAll">
+            <label class="form-check-label" for="checkAll">
+                Chọn tất cả
+            </label>
+        </div>
+        <select  class="form-select mx-3 selectAction" name = 'action' style="width: 200px" required>
+            <option value="">--Chọn hành động--</option>
+            <option value="delete">Xóa</option>
+        </select>
+        <button class="btn btn-primary btn-sm disabled btnAction">Thực hiện</button>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">STT</th>
+                <th scope="col">TÊN KHÓA HỌC {{{sortCourse 'name' _sort}}}</th>
+                <th scope="col">TRÌNH ĐỘ {{{sortCourse 'level' _sort}}}</th>
+                <th colspan="" scope="col">THỜI GIAN TẠO {{{sortCourse 'createdAt' _sort}}}</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each myCourses}}
+            <tr>
+                <th>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="courseId[]" value="{{this._id}}">
+                    </div>
+                </th>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.level}}</td>
+                <td>{{this.createdAt}}</td>
+                <td>
+                    <a class="btn text-primary " title="sửa" href="/course/{{this._id}}/update-course"><i
+                            class="bi bi-tools"></i></a>
+
+                </td>
+                <td>
+                    <a class="btn text-primary" title="xóa" href="" data-bs-toggle="modal" data-id="{{this._id}}"
+                        data-bs-target="#confirmDelete"><i class="bi bi-trash2"></i></a>
+                </td>
+
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="4" class="text-center fs-4 my-3">Chưa có khóa học nào được đăng. <a
+                        href="/course/create-course" class="text-decoration-none">Đăng khóa học</a></td>
+            </tr>
+
+            {{/each}}
+        </tbody>
+    </table>
+    {{#if countCourses}}
+    <div class="text-center"><a href="/course/trash" class="text-decoration-none fs-4">Thùng rác.<i
+                class="bi bi-trash fs-1 ms-1 position-relative"><span
+                    class="badge bg-danger rounded-pill fs-6 position-absolute top-0 start-90">{{countCourses}}</span></i></a>
+    </div>
+    {{/if}}
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmDelete" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Bạn chắc chắn muốn xóa khóa học?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-footer">
+                <button id='delete' type="button" class="btn btn-danger">Xóa</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="formDelete" method="POST">
+
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const confirmDelete = document.getElementById('confirmDelete')
+        const formDelete = document.querySelector('#formDelete')
+        const btnDelete = document.querySelector('#delete')
+        const btnCheckAll = $('#checkAll')
+        const itemsCheck = $('input[name = "courseId[]"]')
+        const btnAction = $('.btnAction')
+        const formAction = $('#submitAction')
+        var idCourse
+        confirmDelete.addEventListener('show.bs.modal', function (event) {
+            // Button that triggered the modal
+            const button = event.relatedTarget
+            // Extract info from data-bs-* attributes
+            idCourse = button.getAttribute('data-id')
+        })
+
+        btnDelete.onclick = function () {
+            formDelete.setAttribute('action', `/course/${idCourse}/delete?_method=DELETE`)
+            formDelete.submit()
+        }
+
+        //Check all
+        btnCheckAll.change(function () {
+            const checkAll = $(this).prop('checked')
+            itemsCheck.prop('checked', checkAll)
+            removeDisabledBtn()
+        })
+
+        //bỏ check 1 phần tử => btnCheckAll ko dc check nữa
+        itemsCheck.change(function () {
+            const countCheck = itemsCheck.length === $("input[name = 'courseId[]']:checked").length
+            btnCheckAll.prop('checked', countCheck)
+            removeDisabledBtn()
+        })
+
+        // hàm xử lý able btn (thực hiện)
+        function removeDisabledBtn() {
+            const countCheck = $("input[name = 'courseId[]']:checked").length
+            if(countCheck > 0) {
+                btnAction.removeClass('disabled')
+            } else {
+                btnAction.addClass('disabled')
+            }
+        }
+
+        //submit btn(thực hiện)
+        btnAction.submit()
+    })
+
+</script>
